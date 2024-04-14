@@ -43,25 +43,25 @@ main:
         addi $t1, $t1, -1
         bnez $t1, loop 
 
-    # 鎵撳嵃缁撴灉
-    move $a1, $v0 # 鍏堟妸v0涓瓨鐨勬暟鎷垮嚭鏉ワ紝閬垮厤瑕嗙洊
-    li $v0, 4 # 鎿嶄綔鏁颁负4锛岀郴缁熸墽琛屾墦鍗癮0鎿嶄綔
-    la $a0, ans1 # 鎵撳嵃鐨勫唴瀹?
-    syscall # 鎵撳嵃鎿嶄綔
-    move $a0, $a1 # 鎶婂瓨鐨勬暟鎷垮洖鏉ワ紝璧嬪?肩粰a0锛屽噯澶囨墦鍗?
-    li $v0, 1 # 鎿嶄綔鏁?1锛屾墦鍗颁竴涓暣鍨媋0
-    syscall # 鎵撳嵃鎿嶄綔
+    # 打印结果
+    move $a1, $v0 # 先把v0中存的数拿出来，避免覆盖
+    li $v0, 4 # 操作数为4，系统执行打印a0操作
+    la $a0, ans1 # 打印的内容
+    syscall # 打印操作
+    move $a0, $a1 # 把存的数拿回来，赋值给a0，准备打印
+    li $v0, 1 # 操作数1，打印一个整型a0
+    syscall # 打印操作
 
-    li $v0, 4 # 鎿嶄綔鏁颁负4锛岀郴缁熸墽琛屾墦鍗癮0鎿嶄綔
-    la $a0, ans2 # 鎵撳嵃鐨勫唴瀹?
-    syscall # 鎵撳嵃鎿嶄綔
-    move $a0, $v1 # 鎶妚1鐨勫?艰祴鍊肩粰a0锛屽噯澶囨墦鍗?
-    li $v0, 1 # 鎿嶄綔鏁?1锛屾墦鍗颁竴涓暣鍨媋0
-    syscall # 鎵撳嵃鎿嶄綔
+    li $v0, 4 # 操作数为4，系统执行打印a0操作
+    la $a0, ans2 # 打印的内容
+    syscall # 打印操作
+    move $a0, $v1 # 把v1的值赋值给a0，准备打印
+    li $v0, 1 # 操作数1，打印一个整型a0
+    syscall # 打印操作
 
-    # 閫?鍑虹▼搴?
-    li $v0, 10 # 鎿嶄綔鏁?10锛岄??鍑虹郴缁?
-    syscall # 閫?鍑虹郴缁?
+    # 退出程序
+    li $v0, 10 # 操作数10，退出系统
+    syscall # 退出系统
 
 
 
