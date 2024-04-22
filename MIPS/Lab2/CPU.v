@@ -29,7 +29,7 @@ module CPU(
     wire [31:0] Imm32,ImmL2,MuxPC;
     wire [27:0] PsudeoPC;
     wire [4:0] WriteAddr;
-    wire [1:0] ALUO;
+    wire [1:0] ALUOp;
     wire [3:0] ALUCtrl;
 
     wire zero,MemWr,RegWr,RegDst,ALUSrc,jump,branch,Mem2Reg,BranchZ;
