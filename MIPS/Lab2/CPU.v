@@ -25,6 +25,9 @@ module CPU(
     input rst
 );
 
+
+
+
     wire [31:0] TempPC,RsData,RtData,ALUIn,ALUResult,MemReadData,instr,WriteData,JumpPC,SequencePC,BranchPC;
     wire [31:0] Imm32,ImmL2,MuxPC;
     wire [27:0] PsudeoPC;
@@ -53,7 +56,7 @@ module CPU(
     assign WriteData = jump ? PC + 4 : Mem2Reg ? MemReadData : ALUResult;   //如果是j指令，那么把PC加4,执行下一条指令;非j指令情况下，决定是从rom中读取还是ALU计算得到
     
     //指令存储器
-    iromIP U1(clk,PC[6:2],instr);
+    irom U1(clk,PC[6:2],instr);
 
     //译码
     Decoder U2(.Op(instr[31:26]),.ALUOp(ALUOp),.RegDst(RegDst),.RegWr(RegWr),.ALUSrc(ALUSrc),.MemWr(MemWr),.jump(jump),.branch(branch),.Mem2Reg(Mem2Reg),.wb(wb));

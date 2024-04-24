@@ -16,32 +16,33 @@ module Dram(
             case (lb[1:0])
                 2'b00:
                 begin
-                    if(regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'hffffff, regs[addr[6:2]][7:0]}; // LB 3:0
-                    else if(regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'b0, regs[addr[6:2]][7:0]}; // LB 3:0
+                    if(regs[addr][31] == 1)
+                        ReadData <= {24'hffffff, regs[addr][31:24]}; // LB 3:0
+                    else if(regs[addr][31] == 0)
+                        ReadData <= {24'b0, regs[addr][31:24]}; // LB 3:0
                 end
                 2'b01: 
                 begin
-                    if(regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'hffffff, regs[addr[6:2]][15:8]}; // LB 7:4
-                    else if (regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'b0, regs[addr[6:2]][15:8]}; // LB 7:4
+                    if(regs[addr][23] == 1)
+                        ReadData <= {24'hffffff, regs[addr][23:16]}; // LB 7:4
+                    else if (regs[addr][23] == 0)
+                        ReadData <= {24'b0, regs[addr][23:16]}; // LB 7:4
                 end
                 2'b10: 
                 begin
-                    if(regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'hffffff, regs[addr[6:2]][23:16]}; // LB 11:8
-                    else if (regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'b0, regs[addr[6:2]][23:16]}; // LB 11:8
+                    if(regs[addr][15] == 1)
+                        ReadData <= {24'hffffff, regs[addr][15:8]}; // LB 11:8
+                    else if (regs[addr][15] == 0)
+                        ReadData <= {24'b0, regs[addr][15:8]}; // LB 11:8
                 end
                 2'b11: 
                 begin
-                    if(regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'hffffff, regs[addr[6:2]][31:24]}; // LB 15:12
-                    else if (regs[addr[6:2]][7] == 1)
-                        ReadData <= {24'b0, regs[addr[6:2]][31:24]}; // LB 15:12
+                    if(regs[addr[4:0]][7] == 1)
+                        ReadData <= {24'hffffff, regs[addr][7:0]}; // LB 15:12
+                    else if (regs[addr[4:0]][7] == 0)
+                        ReadData <= {24'b0, regs[addr][7:0]}; // LB 15:12
                 end
+                default:ReadData <= 0;
             endcase
        end
        else begin
