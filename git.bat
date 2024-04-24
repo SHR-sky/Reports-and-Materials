@@ -1,0 +1,1 @@
+start C:\Users\sky\Desktop\XCOM.exe
